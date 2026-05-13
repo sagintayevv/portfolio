@@ -27,21 +27,18 @@
     --accent: #7c3aed;
     --accent-hover: #a855f7;
     --surface-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.02),
-      0 10px 24px rgba(0, 0, 0, 0.24);
+      0 0 0 1px rgba(255, 255, 255, 0.02), 0 10px 24px rgba(0, 0, 0, 0.24);
     --surface-shadow-hover:
-      0 0 0 1px rgba(255, 255, 255, 0.04),
-      0 18px 34px rgba(0, 0, 0, 0.28),
+      0 0 0 1px rgba(255, 255, 255, 0.04), 0 18px 34px rgba(0, 0, 0, 0.28),
       0 36px 60px rgba(0, 0, 0, 0.18);
     --sidebar-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.06),
-      0 8px 32px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.06), 0 8px 32px rgba(0, 0, 0, 0.5),
       inset 0 1px 0 rgba(255, 255, 255, 0.04);
     --sidebar-active-bg: linear-gradient(160deg, #252530 0%, #1e1e28 100%);
     --timeline-shadow: 0 0 0 6px rgba(13, 13, 18, 0.9);
   }
 
-  html[data-theme='light'] {
+  html[data-theme="light"] {
     --bg-body: #eef2f7;
     --bg-app: #f8fafc;
     --bg-app-veil: rgba(248, 250, 252, 0.92);
@@ -65,15 +62,12 @@
     --accent: #7c3aed;
     --accent-hover: #6d28d9;
     --surface-shadow:
-      0 0 0 1px rgba(15, 23, 42, 0.03),
-      0 12px 30px rgba(148, 163, 184, 0.18);
+      0 0 0 1px rgba(15, 23, 42, 0.03), 0 12px 30px rgba(148, 163, 184, 0.18);
     --surface-shadow-hover:
-      0 0 0 1px rgba(15, 23, 42, 0.04),
-      0 20px 36px rgba(148, 163, 184, 0.22),
+      0 0 0 1px rgba(15, 23, 42, 0.04), 0 20px 36px rgba(148, 163, 184, 0.22),
       0 34px 58px rgba(148, 163, 184, 0.16);
     --sidebar-shadow:
-      0 0 0 1px rgba(15, 23, 42, 0.08),
-      0 10px 24px rgba(148, 163, 184, 0.2),
+      0 0 0 1px rgba(15, 23, 42, 0.08), 0 10px 24px rgba(148, 163, 184, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.75);
     --sidebar-active-bg: linear-gradient(160deg, #eef2ff 0%, #e2e8f0 100%);
     --timeline-shadow: 0 0 0 6px rgba(248, 250, 252, 0.95);
@@ -86,19 +80,8 @@
   }
 
   html,
-  body,
-  #root {
-    height: 100%;
-    min-height: 100%;
-  }
-
-  html,
   body {
     overflow-x: hidden;
-  }
-
-  #root {
-    overflow: hidden;
   }
 
   body {
@@ -106,7 +89,9 @@
     color: var(--text-primary);
     font-family: "Geist", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
-    transition: background-color 220ms ease, color 220ms ease;
+    transition:
+      background-color 220ms ease,
+      color 220ms ease;
   }
 
   ::-webkit-scrollbar {
@@ -150,7 +135,7 @@
   }
 
   .sidebar-btn.active::after {
-    content: '';
+    content: "";
     @apply absolute bottom-[7px] left-1/2 h-[3px] w-[3px] -translate-x-1/2 rounded-full;
     background: var(--accent);
   }
