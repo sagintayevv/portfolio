@@ -251,10 +251,6 @@
     color: var(--text-secondary);
   }
 
-  .will-animate {
-    @apply translate-y-[18px] opacity-0;
-  }
-
   .panel-surface {
     background: var(--bg-panel);
     border: 1px solid var(--border-soft);
