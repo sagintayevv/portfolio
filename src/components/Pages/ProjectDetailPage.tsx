@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { useNavigate, useParams } from 'react-router-dom';
-import { IconStack } from '@/components/Icons';
-import { projects } from '@/data/projects';
-import type { ProjectDetail, ProjectSection } from '@/data/projects';
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { useNavigate, useParams } from "react-router-dom";
+import { IconStack } from "@/components/Icons";
+import { projects } from "@/data/projects";
+import type { ProjectDetail, ProjectSection } from "@/data/projects";
 
 const categoryIcon: Record<string, JSX.Element> = {
   frontend: <IconStack size={14} />,
@@ -29,17 +29,6 @@ function BackArrow() {
 function FullCardSection({ section }: { section: ProjectSection }) {
   return (
     <div className="relative mb-8 flex min-h-[240px] flex-col justify-end overflow-hidden rounded-[20px] bg-[var(--bg-panel)] sm:mb-10 sm:min-h-[280px]">
-      {section.imageSrc ? (
-        <>
-          <img
-            src={section.imageSrc}
-            alt={section.title}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,11,16,0.12)_0%,rgba(10,11,16,0.34)_45%,rgba(10,11,16,0.86)_100%)]" />
-        </>
-      ) : null}
-
       <div className="relative z-[1] max-w-[520px] px-5 py-6 sm:px-7 sm:py-8 lg:px-9 lg:py-9">
         <h3 className="mb-2 text-[20px] font-extrabold leading-[1.2] tracking-[-0.5px] text-[var(--text-primary)] sm:text-[22px]">
           {section.title}
@@ -72,9 +61,9 @@ function TextOnlySection({ section }: { section: ProjectSection }) {
 
 function renderSection(section: ProjectSection, index: number) {
   switch (section.type) {
-    case 'full-card':
+    case "full-card":
       return <FullCardSection key={index} section={section} />;
-    case 'text-only':
+    case "text-only":
       return <TextOnlySection key={index} section={section} />;
     default:
       return null;
@@ -91,21 +80,21 @@ export function ProjectDetailPage() {
 
   useEffect(() => {
     if (!ref.current) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.set(ref.current.querySelectorAll('.will-animate'), {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(ref.current.querySelectorAll(".will-animate"), {
         opacity: 1,
         y: 0,
-        clearProps: 'all',
+        clearProps: "all",
       });
       return;
     }
-    const targets = ref.current.querySelectorAll('.will-animate');
+    const targets = ref.current.querySelectorAll(".will-animate");
     gsap.set(targets, { opacity: 0, y: 22 });
     gsap.to(targets, {
       opacity: 1,
       y: 0,
       duration: 0.55,
-      ease: 'power3.out',
+      ease: "power3.out",
       stagger: 0.09,
       delay: 0.05,
     });
@@ -116,7 +105,7 @@ export function ProjectDetailPage() {
       <div className="page-shell text-[var(--text-dim)]">
         <p>Project not found.</p>
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
           className="mt-3 bg-transparent text-[var(--accent)] transition-colors hover:text-[var(--accent-hover)]"
         >
           Back to home
@@ -126,10 +115,7 @@ export function ProjectDetailPage() {
   }
 
   return (
-    <div
-      ref={ref}
-      className="page-shell"
-    >
+    <div ref={ref} className="page-shell">
       <button
         className="will-animate mb-6 flex items-center gap-1.5 bg-transparent px-0 text-[13px] font-medium text-[var(--text-faint)] transition-colors hover:text-[var(--text-primary)] sm:mb-8"
         onClick={() => navigate(-1)}
@@ -140,7 +126,9 @@ export function ProjectDetailPage() {
 
       <div className="will-animate mb-[10px]">
         <div className="mb-[10px] flex items-center gap-2">
-          <span className="text-[var(--text-faint)]">{categoryIcon[project.category]}</span>
+          <span className="text-[var(--text-faint)]">
+            {categoryIcon[project.category]}
+          </span>
           <span className="text-[11px] font-semibold uppercase tracking-[1px] text-[var(--text-faint)]">
             {project.categoryLabel}
           </span>
@@ -153,13 +141,18 @@ export function ProjectDetailPage() {
           <span className="text-[var(--text-link-icon)]">·</span>
           <span>{project.role}</span>
           <span className="text-[var(--text-link-icon)]">·</span>
-          <span>{project.tools.join(', ')}</span>
+          <span>{project.tools.join(", ")}</span>
         </div>
       </div>
-
-      <div className="will-animate mt-8 sm:mt-10">
-        {project.sections.map((section, index) => renderSection(section, index))}
-      </div>
+      <a
+        href={project.projectUrl}
+        onClick={(event) => event.stopPropagation()}
+        className="will-animate mt-8 sm:mt-10"
+      >
+        {project.sections.map((section, index) =>
+          renderSection(section, index),
+        )}
+      </a>
     </div>
   );
 }

@@ -17,14 +17,14 @@ export function RootLayout() {
   }, [theme]);
 
   return (
-    <div className="app-shell flex h-full min-h-screen w-full flex-col overflow-hidden md:min-h-0 md:flex-row">
+    <div className="app-shell flex min-h-screen w-full flex-col overflow-hidden md:h-full md:min-h-0 md:flex-row min-[0px]:min-h-[100dvh]">
       <Sidebar
         theme={theme}
         onToggleTheme={() =>
           setTheme((current) => (current === 'dark' ? 'light' : 'dark'))
         }
       />
-      <main className="flex-1 overflow-hidden md:min-h-0">
+      <main className="flex-1 min-h-0 overflow-hidden">
         <Outlet />
       </main>
     </div>
