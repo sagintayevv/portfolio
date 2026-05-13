@@ -18,8 +18,8 @@ export function RootLayout() {
 
   return (
     <div
-      className="app-shell flex w-full flex-col overflow-hidden md:flex-row"
-      style={{ height: "100dvh" }}
+      className="app-shell flex w-full flex-col md:flex-row"
+      style={{ height: "100dvh", overflow: "hidden" }}
     >
       <Sidebar
         theme={theme}

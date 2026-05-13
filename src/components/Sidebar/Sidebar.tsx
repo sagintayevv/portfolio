@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   IconBriefcase,
   IconHome,
@@ -8,10 +8,10 @@ import {
   IconStack,
   IconSun,
   IconTelegram,
-} from '@/components/Icons';
-import type { NavItem, SocialItem } from '@/types';
-import { SidebarButton } from './SidebarButton';
-import { sidebarItems } from './sidebarConfig';
+} from "@/components/Icons";
+import type { NavItem, SocialItem } from "@/types";
+import { SidebarButton } from "./SidebarButton";
+import { sidebarItems } from "./sidebarConfig";
 
 const navIconMap: Record<string, JSX.Element> = {
   home: <IconHome size={19} />,
@@ -26,30 +26,34 @@ const socialIconMap: Record<string, JSX.Element> = {
 };
 
 const navRouteMap: Record<string, string> = {
-  home: '/',
-  projects: '/projects',
-  skills: '/skills',
-  experience: '/experience',
+  home: "/",
+  projects: "/projects",
+  skills: "/skills",
+  experience: "/experience",
 };
 
 interface SidebarProps {
-  theme: 'dark' | 'light';
+  theme: "dark" | "light";
   onToggleTheme: () => void;
 }
 
 export function Sidebar({ theme, onToggleTheme }: SidebarProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const navItems = sidebarItems.filter((item) => item.type === 'nav') as NavItem[];
-  const socialItems = sidebarItems.filter((item) => item.type === 'social') as SocialItem[];
+  const navItems = sidebarItems.filter(
+    (item) => item.type === "nav",
+  ) as NavItem[];
+  const socialItems = sidebarItems.filter(
+    (item) => item.type === "social",
+  ) as SocialItem[];
 
   const isActive = (id: string) => {
     const route = navRouteMap[id];
-    return route === '/' ? pathname === '/' : pathname.startsWith(route);
+    return route === "/" ? pathname === "/" : pathname.startsWith(route);
   };
 
   return (
-    <aside className="order-last border-t border-[var(--border-soft)] bg-[var(--bg-app-veil)] px-3 py-2 backdrop-blur md:order-none md:flex md:h-full md:justify-center md:border-t-0 md:bg-transparent md:px-3 md:py-6 md:backdrop-blur-0">
+    <aside className="shrink-0 order-last border-t border-[var(--border-soft)] bg-[var(--bg-app-veil)] px-3 py-2 backdrop-blur md:order-none md:flex md:h-full md:justify-center md:border-t-0 md:bg-transparent md:px-3 md:py-6 md:backdrop-blur-0">
       <nav className="sidebar-pill" aria-label="Main navigation">
         {navItems.map((nav) => (
           <SidebarButton
@@ -63,11 +67,13 @@ export function Sidebar({ theme, onToggleTheme }: SidebarProps) {
         ))}
         <div className="sidebar-divider hidden md:block" />
         <SidebarButton
-          title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+          title={
+            theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
+          }
           onClick={onToggleTheme}
           className="theme-btn"
         >
-          {theme === 'dark' ? <IconSun size={17} /> : <IconMoon size={17} />}
+          {theme === "dark" ? <IconSun size={17} /> : <IconMoon size={17} />}
         </SidebarButton>
         {socialItems.map((social) => (
           <SidebarButton
